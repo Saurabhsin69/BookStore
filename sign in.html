@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        #login-box {
+            width: 400px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        #login-box h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        #signUp,
+        #signIn,
+        #reset {
+            width: 100%;
+            padding: 10px;
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        #signUp:hover,
+        #signIn:hover,
+        #reset:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="login-box">
+       
+
+        <div class="right">
+            <h1>Sign In</h1>
+            <input type="text" id="signInEmail" name="signInEmail" placeholder="E-mail" />
+            <input type="password" id="signInPassword" name="signInPassword" placeholder="Password" />
+
+            <input type="submit" id="signIn" name="signin_submit" value="Sign In"/>
+            <input type="submit" id="reset" name="reset_submit" value="Reset Password"/>
+        </div>
+    </div>
+</body>
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-app.js";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-auth.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDbdBIMrMx_3k2L6X0lHbYaE8XS8B3f9X8",
+  authDomain: "anime-18c47.firebaseapp.com",
+  projectId: "anime-18c47",
+  storageBucket: "anime-18c47.appspot.com",
+  messagingSenderId: "289754544822",
+  appId: "1:289754544822:web:86d049018b7afadef20417"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth();
+
+
+const signInButton = document.getElementById('signIn');
+const resetButton = document.getElementById('reset');
+
+
+
+signInButton.addEventListener('click', (e) => {
+    e.preventDefault();
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+
+    signInWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+            const user = userCredential.user;
+            window.location.href = 'index.html';
+            // Additional handling or redirection can be added here in the 
+        })
+        .catch((error) => {
+            const errorMessage = error.message;
+            alert(errorMessage);
+        });
+});
+
+resetButton.addEventListener('click', (e) => {
+    e.preventDefault();
+    const email = document.getElementById('email').value;
+
+    // Firebase password reset functionality
+    sendPasswordResetEmail(auth, email)
+        .then(() => {
+            alert('Password reset email sent. Please check your email.');
+        })
+        .catch((error) => {
+            const errorMessage = error.message;
+            alert(errorMessage);
+        });
+});
+
+const signInEmailInput = document.getElementById('signInEmail');
+        const signInPasswordInput = document.getElementById('signInPassword');
+        signInButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            const email = signInEmailInput.value;
+            const password = signInPasswordInput.value;
+
+            signInWithEmailAndPassword(auth, email, password)
+                .then((userCredential) => {
+                    const user = userCredential.user;
+                    alert('Sign In successful!');
+                    window.location.href='index.html';
+                    // Additional handling or redirection can be added here
+                })
+                .catch((error) => {
+                    const errorMessage = error.message;
+                    alert(errorMessage);
+                });
+        });
+    </script>
+</script>
+</html>

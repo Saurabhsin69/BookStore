@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/bootstrap.css" />
+    <link rel="stylesheet" href="../css/header and footer.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat&family=Roboto&family=Work+Sans&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Nunito+Sans&family=Rubik:wght@400;500&display=swap"
+    rel="stylesheet"
+  />
+
+
+    <link rel="icon" type="image/x-icon" href="../photos/tab icon.png" />
+    <style>
+      .slick-slide {
+        margin: 0px 1.2rem;
+      }
+
+      .rightPartOnSearch .priv_arrow {
+        position: absolute;
+        left: -2rem;
+        top: 50%;
+        color: #720418;
+      }
+      .rightPartOnSearch .next_arrow {
+        position: absolute;
+        top: 50%;
+        right: -2rem;
+        color: #720418;
+      }
+      .read-more-container {
+        display: flex;
+        flex-direction: column;
+        color: #111;
+        gap: 1rem;
+      }
+
+      .read-more-btn {
+        color: #0984e3;
+      }
+
+      .read-more-text {
+        display: none;
+      }
+
+      .read-more-text--show {
+        display: inline;
+      }
+      @media (max-width: 991px) {
+        .col-6 {
+          width: 100%;
+        }
+        .col-lg-8 {
+          padding: 2rem;
+        }
+      }
+    </style>
+    <title>Search | Library Book Store</title>
+  </head>
+
+  <body class="main-bg-color">
+    <header class="pt-3 sticky-top mb-5">
+      <nav class="navbar navbar-expand-lg main-bg-color py-4">
+        <div class="container">
+          <a href="../../index.html">
+            <img src="../photos/main logo.png" alt="" />
+          </a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul
+              class="navbar-nav nav w-100 justify-content-center header-nav-ul m-lg-0 mt-4"
+            >
+              <li class="nav-item">
+                <a
+                  class="nav-link nav-active p-0 my-2 mx-md-3 text-center"
+                  href="../../index.html"
+                  >Home</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link p-0 my-2 mx-md-3 text-center"
+                  href="catalog.html"
+                  >Catalog</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link p-0 my-2 mx-md-3 text-center"
+                  href="about.html"
+                  >About Store</a
+                >
+              </li>
+              
+              <li class="nav-item">
+                <a
+                  class="nav-link p-0 my-2 mx-md-3 text-center header-actived"
+                  href="search.html"
+                  >Search</a
+                >
+              
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link p-0 my-2 mx-md-3 text-center"
+                  href="profile.html"
+                  >My Profile</a>
+              </li>
+            </ul>
+            <div
+        class="d-flex align-items-center justify-content-center mt-3 mt-lg-0 header-join"
+        data-bs-toggle="modal"
+        data-bs-target="#exampleModal"
+        id="logoutButton"
+      >
+        <img src="assets/photos/Profile.png" alt="" />
+        <span class="ms-2 header-span">Logout</span>
+      </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <section>
+      <div class="container">
+        <h2 class="mb-5">Search</h2>
+        <div class="row generalSearch generalContact">
+          <div class="col-lg-4">
+            <div class="inputSearch">
+              <i class="fa-solid fa-magnifying-glass"></i>
+              <input type="search" id="search-input" value="" />
+            </div>
+
+            <div class="col-md-12">
+              <div
+                class="alert alert-danger"
+                style="display: none"
+                id="searchError"
+              >
+                <h4 class="alert-heading">Error</h4>
+                <p id="errorP">Please check all informations</p>
+                <p class="mb-0"></p>
+              </div>
+              <div
+                class="alert alert-success"
+                style="display: none"
+                id="searchSuccess"
+              >
+                <h4 class="alert-heading">Successful</h4>
+                <p >You can see detailed information about book on left</p>
+                <p class="mb-0"></p>
+              </div>
+            </div>
+
+            <button id="btn-search" type="submit" style="width: 100%">
+              Search
+            </button>
+          </div>
+
+          
+          <div class="col-12 col-lg-8">
+            
+
+            <div
+              style="
+                background-color: white;
+                box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.25);
+              "
+              id="first"
+              class="rightPartOnSearch generalForSlider align-items-center p-2 mx-lg-5"
+            >
+
+            <div class="row"  id="url">
+              <div class="col-3 mx-auto text-center">
+                <img class="img-fluid  text-center mx-auto" src="https://miro.medium.com/v2/resize:fit:978/0*cWpsf9D3g346Va20.gif" >
+              </div>
+            </div>
+            
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="mt-5 pt-5">
+      <div class="row m-0">
+        <div class="col-md-12 mt-5 p-0 footer-main">
+          <div class="p-4 pb-0 m-0">
+            <div class="container">
+              <div class="row py-4 align-items-center">
+                <div class="col-md-4">
+                  <div class="footer-logo mb-4 mb-lg-0">
+                    <img
+                      width="200"
+                      src="../photos/footer logo.png"
+                      alt="footer-logo"
+                    />
+                  </div>
+                </div>
+                <div class="col-md-8">
+                  <div class="row">
+                    <div class="col-md-3">
+                      <ul class="p-0">
+                        <li class="list-group-item footer-list-title">Cash</li>
+                        <li class="list-group-item">Delivery</li>
+                        <li class="list-group-item">Payment</li>
+                        <li class="list-group-item">About the Store</li>
+                      </ul>
+                    </div>
+                    <div class="col-md-3">
+                      <ul class="p-0">
+                        <li class="list-group-item footer-list-title">Help</li>
+                        <li class="list-group-item">Contacts</li>
+                        <li class="list-group-item">Purchase returns</li>
+                        <li class="list-group-item">Buyer help</li>
+                      </ul>
+                    </div>
+
+                    <div class="col-md-3">
+                      <ul class="p-0 mt-3">
+                        <li class="list-group-item number text-center mb-3">+1 (365) xxxx-91</li>
+                        <li class="list-group-item"><button class="request w-100">Request a Call</button></li>
+                       
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row mt-4">
+                <div class="col-md-12">
+                  <div class="footer-privacy mx-auto text-center">
+                    <p>
+                      All rights reserved © 2023 | COIS 3420 H | Saurabh Singh
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script
+      type="text/javascript"
+      src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"
+    ></script>
+    <script src="../js/bootstrap.js"></script>
+    <script src="../js/search.js" type="module"></script>
+    <script
+      src="https://kit.fontawesome.com/1274774e96.js"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      // Add event listener for logout button
+      document.getElementById('logoutButton').addEventListener('click', function() {
+        // Redirect to login.html
+        window.location.href = 'login.html';
+      });
+    </script>
+  </body>
+</html>
